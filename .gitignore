@@ -1,0 +1,32 @@
+# Laravel / PHP
+/backend/vendor/
+/backend/bootstrap/cache/
+/backend/storage/
+/backend/database/database.sqlite
+
+# Node / React
+/frontend/node_modules/
+/frontend/dist/
+/frontend/package-lock.json
+
+# Root-level dependencies & build
+/vendor/
+/node_modules/
+/dist/
+/package-lock.json
+
+# Database lokal
+/database/database.sqlite
+
+# Composer lock file (opsional, jika tidak ingin di-track)
+/backend/composer.lock
+/composer.lock
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+/backend/.env
+/frontend/.env

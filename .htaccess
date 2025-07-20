@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# Redirect to frontend by default
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/backend/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ frontend/$1 [L]
+
+# API requests go to backend
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ backend/public/api/$1 [L]
+
+# Backend admin requests
+RewriteCond %{REQUEST_URI} ^/backend/
+RewriteRule ^backend/(.*)$ backend/public/$1 [L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(env|log|sql|md|txt|lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
