@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Admin\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 
 // Settings routes (public - needed for frontend)
-Route::get('/settings', [SettingController::class, 'index']);
+Route::get('/settings', [SettingsController::class, 'showApplicationSettings']);
 Route::post('/settings', [SettingController::class, 'store']);
 
 // Protected routes (require authentication)
