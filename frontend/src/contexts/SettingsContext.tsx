@@ -77,7 +77,7 @@ export const useSettings = () => {
 
 // Mengambil BASE_API_URL dari variabel lingkungan Vite
 // Pastikan variabel ini diawali dengan VITE_
-const BASE_API_URL = '/api';
+const BASE_API_URL = import.meta.env.VITE_API_URL || 'https://white-magpie-827727.hostingersite.com/api';
 
 export const SettingsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, logout } = useAuth(); // Dapatkan user dan logout dari AuthContext
