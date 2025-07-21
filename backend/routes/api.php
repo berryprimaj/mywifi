@@ -26,14 +26,12 @@ Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
 Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 
+// Settings routes (public - needed for frontend)
+Route::get('/settings', [SettingController::class, 'index']);
+Route::post('/settings', [SettingController::class, 'store']);
+
 // Protected routes (require authentication)
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
-    // Settings routes (admin only)
-    Route::middleware('admin')->group(function () {
-Route::get('/settings', [SettingController::class, 'index']);
-Route::post('/settings', [SettingController::class, 'store']);
-    });
 });
